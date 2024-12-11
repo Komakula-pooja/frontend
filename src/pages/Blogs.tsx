@@ -6,7 +6,7 @@ import { BACKEND_URL } from "../config";
 import { Link } from "react-router-dom";
 
 export const Blogs = () => {
-  const { loading, blogs } = useBlogs();
+  const { loading, blogs} = useBlogs();
 
   if (loading) {
     return (

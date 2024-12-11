@@ -57,7 +57,10 @@ export const useBlogs=()=>{
             }
         })
             .then(response=>{
-                setBlogs(response.data.blogs);
+                const sortedBlogs = response.data.blogs.sort((a: Blog, b: Blog) => {
+                    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+                  });
+                  setBlogs(sortedBlogs);
                 setLoading(false);
             })
     },[])
