@@ -30,7 +30,7 @@ export const Publish = () => {
     setBlogs((prevBlogs) => [newBlog, ...prevBlogs]);
 
     // Navigate to the newly created blog
-    navigate(`/blog/${newBlog.id}`);
+    navigate(`/blogs`);
   };
 
   return (
