@@ -60,18 +60,15 @@ export const BlogCard = ({
           </Link>
         </div>
       </Link>
-      <div className="flex pt-2">
-        <div className="flex items-center">
-          <LikeButton
-            blogId={id}
-            initialLikes={initialLikes}
-            isLikedInitially={isLikedInitially}
-            BACKEND_URL={BACKEND_URL}
-          />
-        </div>
-        <div className="pt-5 mx-4">
-          <CommentButton blogId={id} />
-        </div>
+      <div className="flex items-center justify-start pt-4 space-x-6">
+        <LikeButton
+          blogId={id}
+          initialLikes={initialLikes}
+          isLikedInitially={isLikedInitially}
+          BACKEND_URL={BACKEND_URL}
+        />
+
+        <CommentButton blogId={id} />
       </div>
     </div>
   );
