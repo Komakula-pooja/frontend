@@ -38,52 +38,62 @@ export const Auth=({type}:{type: "signup" | "signin"})=>{
         }
     }
 
-    return <div className="h-screen flex justify-center flex-col">
-        <div className="flex justify-center">
-            <div>
-                <div className="px-10">
-                    <div className="text-4xl font-extrabold">
-                        Create an account
-                    </div>
-                    <div className="text-slate-500">
-                        {type==="signin"?"Don't have an account?": "Already have an account?" }
-                        <Link className="pl-2 underline" to={type==="signin" ?"/signup" :"/signin"}>
-                        {type==="signin" ? "Sign up" : "Sign in"}
-                        </Link>
-                    </div>
-                </div>
-                <div className="pt-8">
+    return (  
+    <div className="h-screen flex justify-center items-center bg-gray-50">
+        <div className="bg-white shadow-md rounded-lg p-6 md:p-10 w-full max-w-md mx-4 sm:mx-auto">
+            <div className="text-center">
+                <h1 className="text-4xl font-extrabold mb-2">
+                    {type === "signup" ? "Create an Account" : "Sign In"}
+                </h1>
+                <p className="text-slate-500">
+                    {type === "signin"
+                        ? "Don't have an account?"
+                        : "Already have an account?"}
+                    <Link
+                        className="pl-2 underline text-blue-600"
+                        to={type === "signin" ? "/signup" : "/signin"}
+                    >
+                        {type === "signin" ? "Sign up" : "Sign in"}
+                    </Link>
+                </p>
+            </div>
+            <div className="pt-8">
                 {type === "signup" && (
-                    <LabelledInput 
-                        label="Name" 
-                        placeholder="Sunflower.." 
-                        onChange={(e) => setPostInputs({ ...postInputs, name: e.target.value })} 
-                        id="name-input" 
+                    <LabelledInput
+                        label="Name"
+                        placeholder="Sunflower.."
+                        onChange={(e) => setPostInputs({ ...postInputs, name: e.target.value })}
+                        id="name-input"
                     />
                 )}
-                    <LabelledInput 
-                        label="Username" 
-                        placeholder="sunflower@gmail.com" 
-                        onChange={(e) => setPostInputs({ ...postInputs, username: e.target.value })} 
-                        id="username-input" 
-                    />
-                    <LabelledInput 
-                        label="Password" 
-                        type="password" 
-                        placeholder="Atleast 6 characters.." 
-                        onChange={(e) => setPostInputs({ ...postInputs, password: e.target.value })} 
-                        id="password-input" 
-                    />
-                    <button onClick={(e) => {
-                        e.preventDefault(); 
+                <LabelledInput
+                    label="Username"
+                    placeholder="sunflower@gmail.com"
+                    onChange={(e) => setPostInputs({ ...postInputs, username: e.target.value })}
+                    id="username-input"
+                />
+                <LabelledInput
+                    label="Password"
+                    type="password"
+                    placeholder="At least 6 characters.."
+                    onChange={(e) => setPostInputs({ ...postInputs, password: e.target.value })}
+                    id="password-input"
+                />
+                <button
+                    onClick={(e) => {
+                        e.preventDefault();
                         sendRequest();
-                    }} type="button" className="w-full mt-8 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4
-                     focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 
-                     dark:focus:ring-gray-700 dark:border-gray-700">{type === "signup"? "Sign up" : "Sign in"}</button>
-                </div>
+                    }}
+                    type="button"
+                    className="w-full mt-6 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4
+                        focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5"
+                >
+                    {type === "signup" ? "Sign up" : "Sign in"}
+                </button>
             </div>
         </div>
     </div>
+);
 }
 
 interface LabelledInputType{
