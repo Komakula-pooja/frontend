@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { User, LassoSelect, Search, House } from 'lucide-react';
+import { User, LassoSelect,  House } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export const Appbar = () => {
@@ -29,9 +29,9 @@ export const Appbar = () => {
                 <Link to="/blogs" className="px-2">
                     <House className="h-5 w-5" />
                 </Link>
-                <Link to="/search" className="relative group px-2">
+                {/* <Link to="/search" className="relative group px-2">
                     <Search className="h-5 w-5 transition-transform duration-300 ease-in-out transform group-hover:scale-110" />
-                </Link>
+                </Link> */}
                 <Link to="/profile" className="relative group px-2">
                     <User className="h-5 w-5 transition-transform duration-300 ease-in-out transform group-hover:scale-110" />
                 </Link>
