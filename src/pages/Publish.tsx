@@ -3,17 +3,42 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useBlogs } from "../hooks";
 
 export const Publish = () => {
+  const { setBlogs } = useBlogs(); // Get the setter for blogs
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    const response = await axios.post(
+      `${BACKEND_URL}/api/v1/blog`,
+      {
+        title,
+        content,
+      },
+      {
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    );
+    const newBlog = response.data.blog;
+
+    // Call the handleNewBlog function to add the new blog at the top
+    setBlogs((prevBlogs) => [newBlog, ...prevBlogs]);
+
+    // Navigate to the newly created blog
+    navigate(`/blog/${newBlog.id}`);
+  };
 
   return (
     <div>
       <Appbar />
       <div className="flex justify-center w-full pt-8 px-4 md:px-8">
         <div className="max-w-screen-lg w-full">
+          {/* Title Input */}
           <input
             onChange={(e) => {
               setTitle(e.target.value);
@@ -30,22 +55,9 @@ export const Publish = () => {
             }}
           />
 
+          {/* Publish Button */}
           <button
-            onClick={async () => {
-              const response = await axios.post(
-                `${BACKEND_URL}/api/v1/blog`,
-                {
-                  title,
-                  content,
-                },
-                {
-                  headers: {
-                    Authorization: localStorage.getItem("token"),
-                  },
-                }
-              );
-              navigate(`/blog/${response.data.id}`);
-            }}
+            onClick={handleSubmit}
             type="submit"
             className="mt-4 inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 hover:bg-blue-800"
           >
@@ -77,3 +89,4 @@ function TextEditor({ onChange }: { onChange: (e: ChangeEvent<HTMLTextAreaElemen
     </div>
   );
 }
+

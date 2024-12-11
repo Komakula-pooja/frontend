@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 
 export const Blogs = () => {
   const { loading, blogs } = useBlogs();
-  
 
   if (loading) {
     return (
@@ -35,7 +34,8 @@ export const Blogs = () => {
             type="button"
             className="text-white bg-slate-600 hover:bg-gray-400 focus:outline-none 
               focus:ring-4 focus:ring-gray-300 font-medium rounded-md text-lg px-8 py-3 
-              text-center transition-all duration-300">
+              text-center transition-all duration-300"
+          >
             Create Blog
           </button>
         </Link>

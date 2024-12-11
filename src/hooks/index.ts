@@ -64,6 +64,7 @@ export const useBlogs=()=>{
 
     return {
         loading,
-        blogs
+        blogs,
+        setBlogs
     }
 }
